@@ -19,11 +19,17 @@ class PlayerModel(BaseModel):
     @field_validator("password")
     @classmethod
     def check_password_length(cls, v: str) -> str:
+<<<<<<< HEAD
         min_len = os.environ["PASSWORD_MIN_LENGTH"]
         if len(v) < min_len:
             raise ValueError(
                 "Password must be at least " + os.environ["PASSWORD_MIN_LENGTH"] + "characters long"
             )
+=======
+        min_len = int(os.getenv("PASSWORD_MIN_LENGTH", 12))
+        if len(v) < min_len:
+            raise ValueError(f"Password must be at least {min_len} characters long")
+>>>>>>> origin/corentin-tp2
         return v
 
 

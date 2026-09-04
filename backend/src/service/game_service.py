@@ -3,6 +3,11 @@ import secrets
 
 from fastapi import HTTPException
 
+<<<<<<< HEAD
+=======
+from business_object.game_mode import GameMode
+from business_object.GameModeFactory import GameModeFactory
+>>>>>>> origin/corentin-tp2
 from dao.player_dao import PlayerDao
 from utils.log_utils import log
 
@@ -11,7 +16,11 @@ class GameService:
     """Service that manages games."""
 
     @log
+<<<<<<< HEAD
     def play(self, id_player: int, id_opponent: int, choice="heads"):
+=======
+    def play(self, id_player: int, id_opponent: int, game_mode: str, **kwargs):
+>>>>>>> origin/corentin-tp2
         """Executes a single round of a coin-flip game between two players.
         Args:
             id_player (int): The unique identifier of the first player.
@@ -32,10 +41,17 @@ class GameService:
         if not p1 or not p2:
             raise HTTPException(status_code=404, detail="Player not found")
 
+<<<<<<< HEAD
         result = secrets.choice(["heads", "tails"])
         winner = p1 if result == choice else p2
 
         self.update_player_ratings(p1, p2, winner)
+=======
+        game_factory = GameModeFactory.get_mode(game_mode)
+        game = game_factory.play(id_player, id_opponent, **kwargs)
+
+        self.update_player_ratings(p1, p2, game.winner)
+>>>>>>> origin/corentin-tp2
 
         PlayerDao().update(p1)
         PlayerDao().update(p2)
@@ -43,6 +59,7 @@ class GameService:
         return {
             "player1": p1.username,
             "player2": p2.username,
+<<<<<<< HEAD
             "description": result,
             "winner": winner.username,
             "new_elo1": p1.elo,
@@ -90,3 +107,10 @@ class GameService:
             return
 
         p1.elo, p2.elo = cls.calculate_new_ratings(p1.elo, p2.elo, player_a_won=(p1 == winner))
+=======
+            "description": game.description,
+            "winner": game.winner.username,
+            "new_elo1": p1.elo,
+            "new_elo2": p2.elo,
+        }
+>>>>>>> origin/corentin-tp2

@@ -20,9 +20,16 @@ logger = get_page_logger("create_player")
 username = st.text_input("Username", max_chars=30)
 password = st.text_input("Password", type="password")
 
+<<<<<<< HEAD
 min = int(os.environ["PASSWORD_MIN_LENGTH"])
 is_pwd_long_enough = len(password) >= min
 st.write("✅" if is_pwd_long_enough else "❌", "At least " + str(min) + " characters")
+=======
+password_min_length = int(os.environ["PASSWORD_MIN_LENGTH"])
+
+is_pwd_long_enough = len(password) >= password_min_length
+st.write("✅" if is_pwd_long_enough else "❌", f"At least {password_min_length} characters")
+>>>>>>> origin/corentin-tp2
 
 elo = st.number_input("Elo", min_value=1000, max_value=3000)
 email = st.text_input("Email")
