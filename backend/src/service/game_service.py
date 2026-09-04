@@ -37,7 +37,7 @@ class GameService:
         game_factory = GameModeFactory.get_mode(game_mode)
         game = game_factory.play(id_player, id_opponent, **kwargs)
 
-        self.update_player_ratings(p1, p2, winner)
+        self.update_player_ratings(p1, p2, game.winner)
 
         PlayerDao().update(p1)
         PlayerDao().update(p2)
@@ -45,8 +45,8 @@ class GameService:
         return {
             "player1": p1.username,
             "player2": p2.username,
-            "description": result,
-            "winner": winner.username,
+            "description": game.description,
+            "winner": game.winner.username,
             "new_elo1": p1.elo,
             "new_elo2": p2.elo,
         }
