@@ -5,7 +5,7 @@ INSERT INTO player(username, password, elo, email, pokemon_fan) VALUES
 ('batricia',  '9876',  1500,  'bat@project.io',       false),
 ('miguel',    'abcd',  1300,  'miguel@project.io',    true),
 ('gilbert',   'toto',  1100,  'gilbert@project.io',   false),
-('junior',    'aaaa',  1200,  'junior@project.io',    true);
+('junior',    'aaaaaaaaaaaaaa',  1200,  'junior@project.io',    true);
 
 INSERT INTO game(id_player1, id_player2, game_mode, id_winner, detail) VALUES
 (1, 2, 'coinflip', 1, 'Gilbert chose heads, result was heads'),
